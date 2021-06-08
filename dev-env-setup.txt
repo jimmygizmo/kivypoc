@@ -1,0 +1,55 @@
+Instructions lean towards MacOS but are easily adaptable.
+
+Use Pyenv to manage Python versions. Period. Install it with Homebrew.
+Also install Pyenv-Virtualenv with Homebrew. (NOTE: Exact versions may differ from below.)
+
+Research sufficiently first.
+The main thing not to miss is after installing the two versions of Python (since you need both a 2 and a 3)
+you need to issue the correct 'global' command so your python vs python2 vs python3 commands point to things
+correctly. As of this point in time, to me at least 'correctly' means that just 'python'
+(without a 2 or 3 on the end) will point to Python 3. Apple just made this change for Mac OS,
+even though we are deliberately NOT using the MacOS-installed python.
+Anyhow, the correct 'pyenv global' configuration command you need to make for this too all come out
+correctly will be something similar to:
+pyenv global 3.9.5 2.7.18
+
+This should give you a 'pyenv versions' that shows:
+➜  ~ pyenv versions
+  system
+* 2.7.18 (set by /Users/bilbo/.pyenv/version)
+* 3.9.5 (set by /Users/bilbo/.pyenv/version)
+
+
+The result should also be such that your python -V, python2 -V, python3 -V show the following:
+➜  ~ python -V; python2 -V; python3 -V
+Python 3.9.5
+Python 2.7.18
+Python 3.9.5
+
+Also note, you will use 'pyenv which' to show the path to the binaries and it should look like this:
+➜  ~ pyenv which python; pyenv which python2; pyenv which python3
+/Users/bilbo/.pyenv/versions/3.9.5/bin/python
+/Users/bilbo/.pyenv/versions/2.7.18/bin/python2
+/Users/bilbo/.pyenv/versions/3.9.5/bin/python3
+
+That is the basis for ALL python work I do and I strongly STRONGLY recommend this.
+I know ALL of the other ways to use Python on MacOS and all of them will run into problems in various scenarious.
+This is the only really correct and powerful and trouble-free 'professional' way to develop with Python on
+MacOS and it will remain so for some time while there is any Python 2 code around, which will be true for years.
+
+This is not just important because Python 2 will be around for a while, this is also important because there can
+be many real world scenarios in which you need to switch between different versions of Python.
+
+What we have set up so far is just our Python. We also need to use Python Virtual Environments.
+
+TODO: Continue...
+TODO: Combine this file with: ios-build-deploy.txt
+
+
+pip install kivy[base] kivy_examples
+
+https://kivy.org/doc/stable/gettingstarted/installation.html
+
+
+##
+#

@@ -1,0 +1,78 @@
+This page details building and deploying for IOS:
+https://kivy.org/doc/stable/guide/packaging-ios.html
+
+It mentions that kivy-IOS builds packages with Python 3.7.
+I was tending towards using the latest Python 3.9.5 for everything I can, but I use Pyenv to manage my Python
+versions and I use Pyenv-virtualenv to manage virtual envs created under those Python installations.
+If you are not using Pyenv, you have no good way to manage projects using different Python versions. Using containers
+can help but it involves more effort and can't easily address all needs.
+Especially on MacOS, if you are not using Pyenv yet, I strongly suggest you check it out.
+
+------------------------------------------------------------------------------------------------------------------------
+Before, learning of this requirement for the older Python version of 3.7, my fresh new Pyenv and Pyenv-Virtualenv
+set up looked like this:
+
+(kivypoc) ➜  pong git:(main) ✗ pyenv versions
+  system
+  2.7.18
+  3.9.5
+  3.9.5/envs/kivypoc
+* kivypoc (set by /Users/bilbo/GITREPOS/kivypoc/.python-version)
+
+
+------------------------------------------------------------------------------------------------------------------------
+I will continue using Python 3.9.5 for most projects, but I have now also installed Python 3.7 and gotten rid of the
+initial 'kivypoc' Python 3.9.5 virtual environment. I created a new one based off of the latest  Python 3.7 version.
+The specific Python 3.7 version I will be using is the last before it went to 3.8 and is 3.7.10.
+
+This is all now in place and now my 'pyenv versions' is like this:
+
+(kivypoc) ➜  pong git:(main) ✗ pyenv versions
+  system
+  2.7.18
+  3.7.10
+  3.7.10/envs/kivypoc
+  3.9.5
+* kivypoc (set by /Users/bilbo/GITREPOS/kivypoc/.python-version)
+(kivypoc) ➜  pong git:(main) ✗
+
+You can see that I already have a .python-version file in place, specifying this directory (and everything below
+it by default) will have the 'kivypoc' virtual environment active, which is using Python 3.7.10.
+
+One more bit of illustrative confirmation that our Python environment is correct:
+
+(kivypoc) ➜  pong git:(main) ✗ python -V; python2 -V; python3 -V;
+Python 3.7.10
+Python 2.7.16
+Python 3.7.10
+
+------------------------------------------------------------------------------------------------------------------------
+
+The .python-version file in the root of the 'kivypoc' project directory causes Pyenv to activate the 'kivypoc'
+virtual environment and thus the 'python' and 'python3' commands will invoke Python 3.7.10 and NOT Python 3.9.5.
+Python 3.9.5 is my default I set globally. Our current work will not involve python 2 or the use of the 'python2'
+command. The contents of the .python-version file, set manually or via 'pyenv local' are simply a
+single line containing 'kivypoc'.
+This project-specific virtual environment will come with a clean slate for installed 'site-packages' modules,
+which of course is the primary purpose of a virtual environment. The modules needed by this project will be listed
+in requirements.txt file when the project reaches stable milestones, a version-pinned variant of the requirements.txt
+file will be also be introduced and maintained so control of when/what module upgrades remains under your control.
+If you don't maintain a pinned version of your requirements.txt file, any module can upgrade and introduce change
+at anytime and it can be inconvenient to address after the fact. Use an unpimned (no versions specified) variant
+for when you are looking for upgrades to consider, testing those upgrades, doing major development work,
+troubleshooting or experimenting etc. but then restore the usage of the version-pinned requirements.txt file
+in which every single dependent module (AND ALL OF THE CHILD DEPENDENCIES DISCOVERED THROUGH PIP FREEZE) are ALL
+specified with the exact version. This gives you the most control and any lesser methodology exposes you to change
+outside of your control and the potential for random, mysterious bugs. In technology, only the paranoid survive.
+So the result is that your normal requirements.txt file will have far fewer modules listed than your
+pip-freeze-generated, version-pinned 'pinned-requirements.txt' file. When versions DO change, be sure to do the
+appropriate extra testing and then also note all the details of the change and the implications in your commit
+comments and elsewhere as appropriate.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+TODO: Combine this file with: dev-env-setup.txt
+
+##
+#
+
