@@ -1,3 +1,35 @@
+TODO: Double check on usage of 3.7.10. I was watching the log of the very big build of kivy-ios (toolchain build kivy)
+and I saw something install Python 3.8.2. I also saw Python 3.8 in other build info and did not notice any other
+Python versions. Not explicitly confirmed yet but 3.7 info looks like it is probably outdated.
+The main instructions I am currently following are from https://kivy.org/doc/stable/guide/packaging-ios.html
+but the mention of Python version is only on a web page not in one place and could easily be outdated info.
+TODO: Plan to change to Python 3.8.2 for the kivypoc venv. Will need to install this with Pyenv and we will no
+longer need 3.7
+CLARIFICATION: Once built and deployed using Kivy-IOS, your Python code will be running there under Python 3.8.2
+and you cannot easily or not at all control this version. So that your IDE and local testing is appropriate, this
+is why you want your local virtual environment to exactly match the version you will be deploying with.
+TODO: Re-write this entire doc to incorporate this clarification and the updated version info.
+- - - - - - - -
+IDE TIP:
+I use many JetBrains Pro IDEs/tools and specifically PyCharm for Python dev.
+Like most IDEs, you do not want the IDE trying to index massive amounts of files it absolutely does not need to
+index .. or you will be heating up your CPU and slowing down your machine quite a lot and unnecessarily.
+In PyCharm, you can 'Exclude' entire directories. This is why some directories like well-known build output dirs
+show up red. In the case of Kivy-POC, after the build, you will want to do two things for this situation:
+1. Exclude the following dirs which the kivy-poc added to the project root: .cache, build, dist.
+2. File -> Invalidate Caches...
+Study up on this stuff to learn why it is important. You do not want your IDE indexing and caching massive amounts of
+info it absolutely should not be indexing (usually this means build output.) The difference can be huge. Don't abuse
+your hardware with overheating and make your IDE and computer sluggish because of such a simple issue. As a developer
+you should know all about this stuff anyhow. Know your tools and optimize them. I highly recommend the JetBrains pro
+license for all serious developers. This is $150,000 per year work, or a lot more. Pony up the $100-$200/year for an
+excellent set of tools. I am not affiliated; I have just worked with a lot of IDEs for a long time.
+I use JetBrains PyCharm, CLion, WebStorm, DatGrip and sometimes IDEA on a daily basis. Each tool is outstanding and
+really can't be beat by anything .. meaning although VSCode is great, you get WAY more with the JetBrains pro suite.
+Also, it is nice that all of these tools feel the same and have similar menus, layout, updating and even code base,
+under one proven company with a strong financial incentive to KEEP everything going right. Well worth the money.
+- - - - - - - -
+
 This page details building and deploying for IOS:
 https://kivy.org/doc/stable/guide/packaging-ios.html
 
@@ -58,7 +90,7 @@ which of course is the primary purpose of a virtual environment. The modules nee
 in requirements.txt file when the project reaches stable milestones, a version-pinned variant of the requirements.txt
 file will be also be introduced and maintained so control of when/what module upgrades remains under your control.
 If you don't maintain a pinned version of your requirements.txt file, any module can upgrade and introduce change
-at anytime and it can be inconvenient to address after the fact. Use an unpimned (no versions specified) variant
+at anytime and it can be inconvenient to address after the fact. Use an unpinned (no versions specified) variant
 for when you are looking for upgrades to consider, testing those upgrades, doing major development work,
 troubleshooting or experimenting etc. but then restore the usage of the version-pinned requirements.txt file
 in which every single dependent module (AND ALL OF THE CHILD DEPENDENCIES DISCOVERED THROUGH PIP FREEZE) are ALL
@@ -93,7 +125,38 @@ The following is also relevant with respect to how you import and use Cython.
 Cython + setuptools build process:
 https://docs.python.org/3/distributing/index.html
 This will show you how to write a setup.py file which is a general skill that all Python developers should have,
-but specifically will be relevant for deploying Kivy apps to IOS devices.
+but specifically will be relevant for deploying Kivy apps to IOS devices. TODO: Clarify this and the exact role.
+
+------------------------------------------------------------------------------------------------------------------------
+BUILD AND DEPLOY TO IPHONE STEPS:
+
+1. ######## CREATE THE DISTRIBUTION (python + modules for IOS)
+pip install kivy-ios (we already have it in our requirements.txt and our kivypoc virtualenv)
+
+toolchain build kivy
+* This is a VERY LARGE AND COMPLEX build. It takes a long time (20-30 minutes) and your CPU will heat up.
+There are many phases to the build. Many things will be downloaded. It's almost surprising the build succeeds.
+TODO: Would be good to detail all that it is building/doing.
+
+
+
+
+2. ######## CREATE AN XCODE PROJECT (and link your source code)
+
+
+
+
+3. ######## UPDATE THE XCODE PROJECT
+
+
+
+
+4. ######## CUSTOMIZE THE XCODE PROJECT
+
+
+
+
+
 
 
 ##
