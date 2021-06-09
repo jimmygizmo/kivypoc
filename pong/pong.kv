@@ -1,10 +1,27 @@
 #:kivy 1.0.9
 
+# .kv files use Python-style whitespace indentation
+
+
+<PongBall>:
+    size: 50, 50
+    canvas:
+        Ellipse:
+            pos: self.pos
+            size: self.size
+
+
+# TIP: A block defined with a class name inside the < and > characters is a Widget rule.
 <PongGame>:
     canvas:
         Rectangle:
+            # 5 pixels left of the horizontal center of the widget, and 0 for y
             pos: self.center_x - 5, 0
+            # The size of the rectangle is set to 10 pixels in width, and the widget’s height in height
             size: 10, self.height
+            # The nice thing about defining the graphics like this, is that the rendered rectangle will be
+            # automatically updated when the properties of any widgets used in the value expression change.
+            # TODO: This last sentence is verbatim from tutorial. It needs to be clarified a lot.
 
     Label:
         font_size: 70
@@ -17,4 +34,7 @@
         center_x: root.width * 3 / 4
         top: root.top - 50
         text: "0"
+
+    PongBall:
+        center: self.parent.center
 

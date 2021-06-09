@@ -73,6 +73,29 @@ comments and elsewhere as appropriate.
 
 TODO: Combine this file with: dev-env-setup.txt
 
+-------------
+MISC NOTES:
+Cython version can also be determined like this:
+>>> print(Cython.__version__)
+0.29.23
+And via pip freeze, it is the same:
+Cython==0.29.23
+
+------------------------------------------------------------------------------------------------------------------------
+
+I highly recommend reading the overview of Cython, if you are new to it. Its greatest benefits are allowing tight
+integration with C libraries (our primary interest in this case) and enabling Python to enjoy sometimes extreme
+performance improvements through static typing and other features. C compiler and additional dev/build steps required.
+I have seen Cython used successfully for big performance improvements in major commercial apps, which were also stable.
+Cython overview: https://cython.readthedocs.io/en/latest/src/quickstart/overview.html
+
+The following is also relevant with respect to how you import and use Cython.
+Cython + setuptools build process:
+https://docs.python.org/3/distributing/index.html
+This will show you how to write a setup.py file which is a general skill that all Python developers should have,
+but specifically will be relevant for deploying Kivy apps to IOS devices.
+
+
 ##
 #
 
