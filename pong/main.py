@@ -1,7 +1,9 @@
 from kivy.app import App
 from kivy.uix.widget import Widget
-from kivy.properties import NumericProperty, ReferenceListProperty
+from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
+from kivy.clock import Clock
+from random import randint
 
 
 # NOTE: on naming of pong.kv: Since the main App class is named PongApp, the .kv file must match the first part of
@@ -28,13 +30,29 @@ class PongBall(Widget):
 
 
 class PongGame(Widget):
-    pass
+    ball = ObjectProperty(None)
+
+    def serve_ball(self):
+        self.ball.center = self.center
+        self.ball.velocity = Vector(4, 0).rotate(randint(0, 360))
+
+    def update(self, dt):
+        self.ball.move()
+
+        # bounce off top and bottom
+        if (self.ball.y < 0) or (self.ball.top > self.height):
+            self.ball.velocity_y *= -1
+
+        # bounce off left and right
+        if (self.ball.x < 0) or (self.ball.right > self.width):
+            self.ball.velocity_x *= -1
 
 
 class PongApp(App):
     def build(self):
         pong_game = PongGame()
-        # Return the new instance of PongGame, a subclass of Widget
+        pong_game.serve_ball()
+        Clock.schedule_interval(pong_game.update, 1.0/60.0)  # Clock will call update 60 times per second
         return pong_game
 
 
