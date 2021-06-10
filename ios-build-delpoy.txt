@@ -134,9 +134,12 @@ BUILD AND DEPLOY TO IPHONE STEPS:
 pip install kivy-ios (we already have it in our requirements.txt and our kivypoc virtualenv)
 
 toolchain build kivy
-* This is a VERY LARGE AND COMPLEX build. It takes a long time (20-30 minutes) and your CPU will heat up.
-There are many phases to the build. Many things will be downloaded. It's almost surprising the build succeeds.
-TODO: Would be good to detail all that it is building/doing.
+* This is a VERY LARGE AND COMPLEX build. It takes a long time (20-30 minutes or more) and your CPU will heat up.
+There are many phases to the build. Many things will be downloaded. I was concerned it would ultimately succeed,
+but it did. I would call this the Kivy IOS runtime, which does not yet have any of your project code in it.
+I think that the following steps will use Xcode to combine your project Python code with this runtime.
+TODO: Would be good to detail all that it is building/doing. And to take another pass at the above once more is
+  learned since some of these points are assumptions.
 
 
 
@@ -152,8 +155,6 @@ TODO: Would be good to detail all that it is building/doing.
 
 
 4. ######## CUSTOMIZE THE XCODE PROJECT
-
-
 
 
 
