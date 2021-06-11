@@ -1,3 +1,6 @@
+# Kivy-ios generated Xcode project directories .. format is AppName-ios/ so:
+*-ios/
+
 # JetBrains/IDEA/PyCharm project preferences directory
 .idea
 
