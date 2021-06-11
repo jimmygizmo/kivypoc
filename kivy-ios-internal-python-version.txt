@@ -10,3 +10,18 @@ and you cannot easily or not at all control this version. So that your IDE and l
 is why you want your local virtual environment to exactly match the version you will be deploying with.
 TODO: Re-write this entire doc to incorporate this clarification and the updated version info.
 
+-------------------
+
+Oh boy! The plot thickens yet again. Now that I have generated a few XCode projects with Kivy IOS and inspected the
+contents .. I have located Python 3.8 but not 3.7. I need to investigate further. I have found 2-3 clues for 3.7
+and 2-3 clues for 3.8 .. so the issue is still up in the air. I think I am getting close to determining exactly where
+your apps code is run from and then that will lead to explicit confirmation of the python version. There could be
+more than one python installation and more than one python version involved throughout the overall build process
+and I have yet to spend the time needed to chase down the various clues I have seen.
+Of course this all goes without saying that the documentation is not clear on this issue, especially in light of
+seeing multiple indications of both 3.7 and 3.8 between logs, pathnames, filenames and the built module list.
+
+--------------------
+
+
+
