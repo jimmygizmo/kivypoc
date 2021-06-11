@@ -1,0 +1,12 @@
+TODO: Double check on usage of 3.7.10. I was watching the log of the very big build of kivy-ios (toolchain build kivy)
+and I saw something install Python 3.8.2. I also saw Python 3.8 in other build info and did not notice any other
+Python versions. Not explicitly confirmed yet but 3.7 info looks like it might be outdated.
+The main instructions I am currently following are from https://kivy.org/doc/stable/guide/packaging-ios.html
+but the mention of Python version is only on a web page not in one place and could easily be outdated info.
+TODO: Plan to change to Python 3.8.2 for the kivypoc venv. Will need to install this with Pyenv and we will no
+longer need 3.7
+CLARIFICATION: Once built and deployed using Kivy-IOS, your Python code will be running there under Python 3.8.2
+and you cannot easily or not at all control this version. So that your IDE and local testing is appropriate, this
+is why you want your local virtual environment to exactly match the version you will be deploying with.
+TODO: Re-write this entire doc to incorporate this clarification and the updated version info.
+

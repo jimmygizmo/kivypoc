@@ -1,14 +1,4 @@
-TODO: Double check on usage of 3.7.10. I was watching the log of the very big build of kivy-ios (toolchain build kivy)
-and I saw something install Python 3.8.2. I also saw Python 3.8 in other build info and did not notice any other
-Python versions. Not explicitly confirmed yet but 3.7 info looks like it is probably outdated.
-The main instructions I am currently following are from https://kivy.org/doc/stable/guide/packaging-ios.html
-but the mention of Python version is only on a web page not in one place and could easily be outdated info.
-TODO: Plan to change to Python 3.8.2 for the kivypoc venv. Will need to install this with Pyenv and we will no
-longer need 3.7
-CLARIFICATION: Once built and deployed using Kivy-IOS, your Python code will be running there under Python 3.8.2
-and you cannot easily or not at all control this version. So that your IDE and local testing is appropriate, this
-is why you want your local virtual environment to exactly match the version you will be deploying with.
-TODO: Re-write this entire doc to incorporate this clarification and the updated version info.
+
 - - - - - - - -
 IDE TIP:
 I use many JetBrains Pro IDEs/tools and specifically PyCharm for Python dev.
@@ -113,12 +103,18 @@ Cython version can also be determined like this:
 And via pip freeze, it is the same:
 Cython==0.29.23
 
+----
+Important additional information can be found in the repo README.md for Kivy-IOS:
+https://github.com/kivy/kivy-ios
+----
+
+
 ------------------------------------------------------------------------------------------------------------------------
 
 I highly recommend reading the overview of Cython, if you are new to it. Its greatest benefits are allowing tight
 integration with C libraries (our primary interest in this case) and enabling Python to enjoy sometimes extreme
 performance improvements through static typing and other features. C compiler and additional dev/build steps required.
-I have seen Cython used successfully for big performance improvements in major commercial apps, which were also stable.
+I have seen Cython used successfully for big performance improvements in major commercial apps. Good, stable solution.
 Cython overview: https://cython.readthedocs.io/en/latest/src/quickstart/overview.html
 
 The following is also relevant with respect to how you import and use Cython.
@@ -135,7 +131,7 @@ pip install kivy-ios (we already have it in our requirements.txt and our kivypoc
 
 toolchain build kivy
 * This is a VERY LARGE AND COMPLEX build. It takes a long time (20-30 minutes or more) and your CPU will heat up.
-There are many phases to the build. Many things will be downloaded. I was concerned it would ultimately succeed,
+There are many phases to the build. Many things will be downloaded. I was concerned it may not ultimately succeed,
 but it did. I would call this the Kivy IOS runtime, which does not yet have any of your project code in it.
 I think that the following steps will use Xcode to combine your project Python code with this runtime.
 TODO: Would be good to detail all that it is building/doing. And to take another pass at the above once more is
