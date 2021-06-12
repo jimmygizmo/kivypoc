@@ -6,23 +6,19 @@ A permission error seems like the correct behavior. OK .. so where are we suppos
 our app generates while running?
 
 -----------------------------------------------------------------------------------------------------------
-ERROR:
-(2 examples. manually reformatted for readability)
+ERROR (manually reformatted for readability):
 
 2021-06-11 15:21:41.137590-0700 cameratest[976:352649] [cameratest] IIOImageWriteSession:121: cannot create:
   '/private/var/containers/Bundle/Application/BA337717-0E4D-4A0A-8EB2-3A328A850F8F/cameratest.app/YourApp/IMG_20210611_152141.png.sb-81fbb46c-XxKqOQ'
          error = 1 (Operation not permitted)
-2021-06-11 15:21:41.137809-0700 cameratest[976:352649] [cameratest] CGImageDestinationAddImage:3996: *** ERROR: CGImageDestinationAddImage: destination is nil
-2021-06-11 15:21:41.137851-0700 cameratest[976:352649] [cameratest] CGImageDestinationFinalize:4196: *** ERROR: CGImageDestinationFinalize: destination is nil
+2021-06-11 15:21:41.137809-0700 cameratest[976:352649] [cameratest] CGImageDestinationAddImage:3996:
+  *** ERROR: CGImageDestinationAddImage: destination is nil
+2021-06-11 15:21:41.137851-0700 cameratest[976:352649] [cameratest] CGImageDestinationFinalize:4196:
+  *** ERROR: CGImageDestinationFinalize: destination is nil
 Captured
 
 
-2021-06-11 15:22:09.884730-0700 cameratest[976:352649] [cameratest] IIOImageWriteSession:121: cannot create:
-  '/private/var/containers/Bundle/Application/BA337717-0E4D-4A0A-8EB2-3A328A850F8F/cameratest.app/YourApp/IMG_20210611_152209.png.sb-81fbb46c-vXHUCL'
-         error = 1 (Operation not permitted)
-2021-06-11 15:22:09.884899-0700 cameratest[976:352649] [cameratest] CGImageDestinationAddImage:3996: *** ERROR: CGImageDestinationAddImage: destination is nil
-2021-06-11 15:22:09.884941-0700 cameratest[976:352649] [cameratest] CGImageDestinationFinalize:4196: *** ERROR: CGImageDestinationFinalize: destination is nil
-Captured
 
 
 -----------------------------------------------------------------------------------------------------------
+
