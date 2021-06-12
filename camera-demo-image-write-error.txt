@@ -17,8 +17,31 @@ ERROR (manually reformatted for readability):
   *** ERROR: CGImageDestinationFinalize: destination is nil
 Captured
 
-
-
-
 -----------------------------------------------------------------------------------------------------------
 
+A hint that might be helpful. Maybe we just need to figure out the correct path we ARE allowed to write to:
+A GitHub issues post suggested some paths similar to these:
+
+/private/var/mobile/Containers/Data/Application/<app id>/Documents/photo.jpg
+/private/var/containers/Bundle/Application/<app id>/Documents/photo.jpg
+Compared to our attempted path:
+/private/var/containers/Bundle/Application/<app id>/cameratest.app/YourApp/IMG_20210611_152141.png.sb-81fbb46c-XxKqOQ
+
+This code sample is supposed to work for writing files on IOS:
+from kivy.app import App
+from kivy.logger import Logger
+from os.path import join
+
+def reset_save(self):
+    user_data_dir = App.get_running_app().user_data_dir
+    filename = join(user_data_dir, "save.txt")
+    try:
+         self.highscore = [0] * 10
+         with open(filename, "w") as fd:
+             for n in self.highscore:
+                 fd.write('0' + '\n')
+    except:
+         Logger.exception("Cannot reset save file")
+
+FROM:
+https://stackoverflow.com/questions/35362411/kivy-porting-to-ios-opening-a-file-works-while-writing-to-a-file-does-not

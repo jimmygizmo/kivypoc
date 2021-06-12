@@ -23,5 +23,30 @@ seeing multiple indications of both 3.7 and 3.8 between logs, pathnames, filenam
 
 --------------------
 
+IT IS OFFICIAL. THE KIVY-IOS APPS RUN UNDER 3.8.2. (The documentation and other items suggesting 3.7 are wrong.)
+This is the output from Kivy-IOS Python code running on an iPhone 6S Plus:
+* * * * * * * * PYTHON VERSION: 3.8.2 (default, Jun  9 2021, 14:35:07)
+TODO: Now that this issue is finally resolved, update all documentation and comments accordingly.
+
+It is best to have every single runtime version match the versions in your development environment exactly.
+I'd say it is pretty much a requirement. Barring that your never REALLY can be sure you do not have a seen or
+unseen difference in behavior. Best not to tempt fate. So to fix my development environment, I will be
+removing Python 3.7.10 and installing Python 3.8.2 (with Pyenv of course.) I will then re-create the kivypoc
+virtual environment off of 3.8.2 (as standard practice, update pip and setuptools for the new virtual env) and then
+install the dependencies from requirements.txt (or perhaps requirements-pinned.txt)
+TODO: Decide on best practice .. should the dev env always install from requirements-pinned.txt?
+  Perhaps not when development is extremely active or experimental or period upgrades are desired at that time ..
+  otherwise if simulating production behavior is the goal, then use the pinned versions. Yes that's a good policy.
+
+- - - - - - - - - -
+
+Pyenv cannot install version 3.8.2. I thought this old problem had gone away. Even the following old trick did not work:
+SDKROOT=/Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk MACOSX_DEPLOYMENT_TARGET=11.3 pyenv install 3.8.2
+
+Best option to try next is 3.8.10. which is the highest 3.8 sub-version.
+SUCCESS.
+3.8.10 should be fine.
+
+
 
 

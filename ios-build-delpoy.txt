@@ -121,6 +121,12 @@ NSPhotoLibraryUsageDescription is one possibility, but the way an app saves capt
 First we need to look closer at the error and see what the existing demo code is trying to do and go from there.
 See text file for more.
 
+----
+On a side-note, here is some related stack exchange info about Info.plist and projectname-Info.plist locations:
+The Info.plist file is by default located in the root folder of your application's bundle, it's derived from
+the {ProjectName}-Info.plist file in the Xcode project. By default it's listed in a group called
+Supporting Files.
+
 
 ------------------------------------------------------------------------------------------------------------------------
 
