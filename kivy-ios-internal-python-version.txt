@@ -47,6 +47,10 @@ Best option to try next is 3.8.10. which is the highest 3.8 sub-version.
 SUCCESS.
 3.8.10 should be fine.
 
-
-
+--------------------------
+TAKE NOTE OF SITE-PACKAGES PATH SEEN IN APP RUNNING ON IOS:
+</private/var/containers/Bundle/Application/<app id>/
+camerademo.app/lib/python3.8/site-packages/kivy/data/glsl/default.png>
+(enter inserted after <app id> for readability.)
+-----------------------------------
 
