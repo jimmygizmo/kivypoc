@@ -19,3 +19,29 @@ rotated 90 degrees to the LEFT AS IT IS VIEWED .. implying a camera that was rot
 maybe also specifying the shape .. which might all be embodied in LandscapeLeft vs LandscapeRight. (defined uniquely
 to each device/platform perhaps.)
 
+---------------------------
+FIX:
+The camera and portal orientation has been fixed but there remains excessive padding which I think should be easy to
+fix.
+Before orientation/rotation fix:
+    Camera:
+        id: camera
+        resolution: (640, 480)
+        play: False
+
+With FIX in place:
+    Camera:
+
+        id: camera
+        resolution: (640, 480)
+        play: False
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -90
+                origin: self.center
+        canvas.after:
+            PopMatrix
+
+ABOUT CANVAS ROTATION:
+https://kivy.org/doc/stable/examples/gen__canvas__rotation__py.html

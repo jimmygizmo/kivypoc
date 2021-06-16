@@ -31,3 +31,6 @@ Builder.load_string("""
         on_press: root.capture()
 """)
 
+# BONUS KV tip: Some actions can be inlined in the KV itself. Example: on_press: camera.play = not camera.play
+
+# So we can both embed KV in Python and embed Python method calls at least inside the KV (inside the Python, in fact.)

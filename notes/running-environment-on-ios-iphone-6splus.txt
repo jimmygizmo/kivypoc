@@ -1,0 +1,8 @@
+
+
+
+# Currently on my iPhone 6S Plus:
+# * * * * * * * * CURRENT WORKING DIRECTORY:
+# /private/var/containers/Bundle/Application/<app id>/camerademo.app/YourApp
+
+

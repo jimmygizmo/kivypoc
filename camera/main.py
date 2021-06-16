@@ -1,8 +1,8 @@
 import sys
 import os
-from os.path import join
+# import os.path
 from kivy.app import App
-from kivy.lang import Builder
+# from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
 import time
 
@@ -19,38 +19,13 @@ Logger.setLevel(logging.TRACE)  # Set log level to maximum detail level.
 # overall. (As seen in the XCode run output when running the app on an iPhone.)
 
 print(f"* * * * * * * * KIVY CAMERA DEMO APP STARTING. App class name: TestCamera")
-print(f"* * * * * * * * Print() logging from application Python code will usually begin with 4 or 8 asterisks * * * *")
+print(f"* * * * * * * * STDOUT/prints from application Python code will usually begin with 4 or 8 asterisks * * * *")
 # TODO: See about switching to using nothing but the logging module. Configure it properly for STDOUT default.
 #  See restproto project for good example of basic logging config for STDOUT logging.
 print(f"* * * * * * * * PLATFORM: {platform}")
 
 print(f"* * * * * * * * PYTHON VERSION (sys.version): {sys.version}")
 print(f"* * * * * * * * CURRENT WORKING DIRECTORY (os.getcwd): {os.getcwd()}")
-# Currently on my iPhone 6S Plus:
-# * * * * * * * * CURRENT WORKING DIRECTORY:
-# /private/var/containers/Bundle/Application/<app id>/camerademo.app/YourApp
-
-
-# Builder.load_string("""
-# <CameraClick>:
-#     orientation: 'vertical'
-#     Camera:
-#         id: camera
-#         resolution: (640, 480)
-#         play: False
-#     ToggleButton:
-#         text: 'Play'
-#         on_press: root.toggle_play()
-#         size_hint_y: None
-#         height: '48dp'
-#     Button:
-#         text: 'Capture'
-#         size_hint_y: None
-#         height: '48dp'
-#         on_press: root.capture()
-# """)
-
-# KV tip: Some actions can be inlined. Example: on_press: camera.play = not camera.play
 
 
 # ################################################ CLASS DEFINITIONS ###################################################
@@ -74,13 +49,9 @@ class CameraClick(BoxLayout):
         timestr = time.strftime("%Y%m%d_%H%M%S")
         print(f"* * * * * * * * CAPTURED AN IMAGE. ID: {timestr}")
         image_file = f"IMG_{timestr}.png"
-        image_path = join(user_data_dir, image_file)
+        image_path = os.path.join(user_data_dir, image_file)
         print(f"* * * * * * * * CAPTURED IMAGE FILE PATH TO WRITE: {image_path}")
         camera.export_to_png(image_path)
-
-        # REFERENCE export_to_png()
-        # https://kivy.org/doc/stable/api-kivy.uix.widget.html
-        # Need to correctly compose path we are allowed to write to under IOS
 
         # TODO: Attempt alternate way to write image data. Use user_data_dir similar to this:
         #   filename = join(user_data_dir, "save.txt")
@@ -97,6 +68,9 @@ class CameraClick(BoxLayout):
         print(f"* * * * * * * * DIR LISTING OF USER DATA DIR:")
         items = os.listdir(dirpath)
         for item in items:
+            print(f"* * * *: {item}")
+        for item in items:
+            item_absolute = os.path.join(dirpath, item)
             print(f"* * * *: {item}")
 
     def toggle_play(self):

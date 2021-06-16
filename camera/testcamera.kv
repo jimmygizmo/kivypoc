@@ -5,8 +5,15 @@
     orientation: 'vertical'
     Camera:
         id: camera
-        resolution: (640, 480)
+        #resolution: (640, 480)
         play: False
+        canvas.before:
+            PushMatrix
+            Rotate:
+                angle: -90
+                origin: self.center
+        canvas.after:
+            PopMatrix
     ToggleButton:
         text: 'Play'
         on_press: root.toggle_play()
