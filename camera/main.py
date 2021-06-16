@@ -13,9 +13,16 @@ from kivy.logger import Logger
 import logging
 
 
-print(f"* * * * * * * * PLATFORM: {platform}")
+Logger.setLevel(logging.TRACE)  # Set log level to maximum detail level.
+# Currently the logging output seen with TRACE is very reasonable/minimal. Of course some of the logging is coming
+# from the IOS/XCode side and can be addressed separately, but so far logging is both minimal and very informative
+# overall. (As seen in the XCode run output when running the app on an iPhone.)
 
-Logger.setLevel(logging.TRACE)  # Set log level to maximum detail level. So far, the amount is very reasonable.
+print(f"* * * * * * * * KIVY CAMERA DEMO APP STARTING. App class name: TestCamera")
+print(f"* * * * * * * * Print() logging from application Python code will usually begin with 4 or 8 asterisks * * * *")
+# TODO: See about switching to using nothing but the logging module. Configure it properly for STDOUT default.
+#  See restproto project for good example of basic logging config for STDOUT logging.
+print(f"* * * * * * * * PLATFORM: {platform}")
 
 print(f"* * * * * * * * PYTHON VERSION (sys.version): {sys.version}")
 print(f"* * * * * * * * CURRENT WORKING DIRECTORY (os.getcwd): {os.getcwd()}")
@@ -24,24 +31,24 @@ print(f"* * * * * * * * CURRENT WORKING DIRECTORY (os.getcwd): {os.getcwd()}")
 # /private/var/containers/Bundle/Application/<app id>/camerademo.app/YourApp
 
 
-Builder.load_string("""
-<CameraClick>:
-    orientation: 'vertical'
-    Camera:
-        id: camera
-        resolution: (640, 480)
-        play: False
-    ToggleButton:
-        text: 'Play'
-        on_press: root.toggle_play()
-        size_hint_y: None
-        height: '48dp'
-    Button:
-        text: 'Capture'
-        size_hint_y: None
-        height: '48dp'
-        on_press: root.capture()
-""")
+# Builder.load_string("""
+# <CameraClick>:
+#     orientation: 'vertical'
+#     Camera:
+#         id: camera
+#         resolution: (640, 480)
+#         play: False
+#     ToggleButton:
+#         text: 'Play'
+#         on_press: root.toggle_play()
+#         size_hint_y: None
+#         height: '48dp'
+#     Button:
+#         text: 'Capture'
+#         size_hint_y: None
+#         height: '48dp'
+#         on_press: root.capture()
+# """)
 
 # KV tip: Some actions can be inlined. Example: on_press: camera.play = not camera.play
 

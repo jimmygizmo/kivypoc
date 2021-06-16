@@ -1,0 +1,21 @@
+This was seen in the first few lines of logs on IOS:
+Available orientation: KIVY_ORIENTATION=LandscapeLeft LandscapeRight Portrait PortraitUpsideDown
+
+The basic camera demo has an issue such that the app and buttons are in portrait, but the camera view as you see it
+out the lens looks like the phone has been tilted 90 degrees to the right. I'm gonna say that the widget showing the
+camera or the image in that widget is LandscapeRight
+* But I don't know the left/right convention used and it is totally subjective as to how it might be defined.
+** It is accurate (and not subjective) to say that currently the image of what is in front of the camera
+   looks like the camera itself was rotated to the RIGHT 90s.
+
+One more thing that is weird at the moment is that the image is wide horizontally which goes with landscape mode
+(which is what the image rotation looks like .. landscape since it is 90 degs off of portrait) .. and you have
+a large amount  (over 50%) of the usable screen space for image is just black because of the portrait/landscape
+mismatch between the phone's physical orientation and the orientation of BOTH the portal/view AND the image content.
+
+One might say that the image data is correct for the widget/portal, but the widget itself is misaligned (incorrectly
+rotated 90 degrees to the LEFT AS IT IS VIEWED .. implying a camera that was rotated to the right.
+(See, it is very subjective. The answer is to just try rotating the widget itself 90 one way or the other. .. and
+maybe also specifying the shape .. which might all be embodied in LandscapeLeft vs LandscapeRight. (defined uniquely
+to each device/platform perhaps.)
+

@@ -1,0 +1,33 @@
+You don't need a separate .kv file. You can use the Builder class to inline the kv code from within your
+Python code.
+
+You will need other stuff, but specifically, you need to import:
+from kivy.lang import Builder
+
+----------------------------------
+Then do something like the below. In the example I took this from, it was done very soon after the imports,
+which makes sense. I think in a lot of cases you will want the kv in a file, but perhaps there are desirable
+ways to inject kv code in other contexts. Loading sub-views/modules, widgets, themes .. yet files might
+still be involved in different ways; kv templates etc. I've only just started looking at Kivy in detail so we
+will see. Anyhow, this does work for a simple example:
+
+
+Builder.load_string("""
+<CameraClick>:
+    orientation: 'vertical'
+    Camera:
+        id: camera
+        resolution: (640, 480)
+        play: False
+    ToggleButton:
+        text: 'Play'
+        on_press: root.toggle_play()
+        size_hint_y: None
+        height: '48dp'
+    Button:
+        text: 'Capture'
+        size_hint_y: None
+        height: '48dp'
+        on_press: root.capture()
+""")
+
