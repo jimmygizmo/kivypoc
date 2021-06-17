@@ -45,3 +45,31 @@ With FIX in place:
 
 ABOUT CANVAS ROTATION:
 https://kivy.org/doc/stable/examples/gen__canvas__rotation__py.html
+------------------------------------
+Found a posting that shows the equivalent using python code and also mentions some general Kivy/python info about
+lookups to translate the one.two.three.four dotted notation of imports .. and a performance optimization that might
+be important to some projects.
+
+Relevant snippets from posting - compare with similar kv code above. (But I don't see a PopMatrix(). Needed?)
+
+import kivy.graphics ? or import kivy graphics * etc?
+
+        with self.canvas.before:
+            kivy.graphics.context_instructions.PushMatrix()
+            kivy.graphics.context_instructions.Translate(*origin)
+            kivy.graphics.context_instructions.PushMatrix()
+            kivy.graphics.context_instructions.Rotate(angle=self.angle)
+
+Performance optimized variant .. applies in general to ALL kinds of code in Kivy and other contexts. The issues is
+that the dot name parts are ALL looked up on every occurrance/iteration UNLESS you stick the looked=up reference
+equivalents into a var with a simple assignment, such as:
+
+kivy_graphics_context_instructions = kivy.graphics.context_instructions
+        with self.canvas.before:
+            kivy_graphics_context_instructions.PushMatrix()
+            kivy_graphics_context_instructions.Translate(*origin)
+            kivy_graphics_context_instructions.PushMatrix()
+            kivy_graphics_context_instructions.Rotate(angle=self.angle)
+
+NOTE: It's also exposed in the graphics module, from kivy.graphics import PushMatrix
+* I guess this note means this would work
